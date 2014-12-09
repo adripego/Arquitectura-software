@@ -1,11 +1,16 @@
-﻿Build started 09/12/2014 17:48:30.
-     1>Project "C:\Users\adrian.pena\Master Programacion Videojuegos\Programacion-2D\Practica 6 - Render de Texto\u-gine.vcxproj" on node 2 (Build target(s)).
+﻿Build started 09/12/2014 21:55:52.
+     1>Project "C:\Users\adrian.pena\Master Programacion Videojuegos\Arquitectura-software\Prototipado\u-gine.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _CRT_SECURE_NO_WARNINGS /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
          main.cpp
-     1>c:\users\adrian.pena\master programacion videojuegos\programacion-2d\practica 6 - render de texto\include\sprite.h(51): warning C4244: 'return' : conversion from 'const double' to 'uint16', possible loss of data
+     1>c:\users\adrian.pena\master programacion videojuegos\arquitectura-software\prototipado\include\sprite.h(51): warning C4244: 'return' : conversion from 'const double' to 'uint16', possible loss of data
+     1>c:\users\adrian.pena\master programacion videojuegos\arquitectura-software\prototipado\main.cpp(20): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\adrian.pena\master programacion videojuegos\arquitectura-software\prototipado\main.cpp(21): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\adrian.pena\master programacion videojuegos\arquitectura-software\prototipado\main.cpp(56): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\adrian.pena\master programacion videojuegos\arquitectura-software\prototipado\main.cpp(62): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\adrian.pena\master programacion videojuegos\arquitectura-software\prototipado\main.cpp(73): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\adrian.pena\Master Programacion Videojuegos\Programacion-2D\Practica 6 - Render de Texto\Debug\u-gine.exe" /INCREMENTAL /NOLOGO /LIBPATH:lib glfw.win32.lib opengl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\adrian.pena\Master Programacion Videojuegos\Programacion-2D\Practica 6 - Render de Texto\Debug\u-gine.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\adrian.pena\Master Programacion Videojuegos\Programacion-2D\Practica 6 - Render de Texto\Debug\u-gine.lib" /MACHINE:X86 Debug\stb_image.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\adrian.pena\Master Programacion Videojuegos\Arquitectura-software\Prototipado\Debug\u-gine.exe" /INCREMENTAL /NOLOGO /LIBPATH:lib glfw.win32.lib opengl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\adrian.pena\Master Programacion Videojuegos\Arquitectura-software\Prototipado\Debug\u-gine.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\adrian.pena\Master Programacion Videojuegos\Arquitectura-software\Prototipado\Debug\u-gine.lib" /MACHINE:X86 Debug\stb_image.obj
          Debug\main.obj
          Debug\bone.obj
          Debug\font.obj
@@ -18,9 +23,9 @@
          Debug\skeletondata.obj
          Debug\skeletonsprite.obj
          Debug\sprite.obj
-         u-gine.vcxproj -> C:\Users\adrian.pena\Master Programacion Videojuegos\Programacion-2D\Practica 6 - Render de Texto\Debug\u-gine.exe
-     1>Done Building Project "C:\Users\adrian.pena\Master Programacion Videojuegos\Programacion-2D\Practica 6 - Render de Texto\u-gine.vcxproj" (Build target(s)).
+         u-gine.vcxproj -> C:\Users\adrian.pena\Master Programacion Videojuegos\Arquitectura-software\Prototipado\Debug\u-gine.exe
+     1>Done Building Project "C:\Users\adrian.pena\Master Programacion Videojuegos\Arquitectura-software\Prototipado\u-gine.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.59
+Time Elapsed 00:00:00.42
