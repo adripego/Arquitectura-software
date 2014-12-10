@@ -79,21 +79,7 @@ uint32 Font::GetTextHeight(const String& text) const
 
 void Font::Render(const String& text, double x, double y)
 {
-    if (arrayGlyphs.Size() != 0)
-    {
-        double offsetX = 0.0;
-        uint32 anchoCaracter;
-        for (int32 i = 0; i < text.Length(); i++){
-            uint16 eX = arrayGlyphs[text[i]]->getStartX();
-            uint16 oY = arrayGlyphs[text[i]]->getStartY();
-            Renderer::Instance().DrawImage(this, x + offsetX, y + oY, text[i]);
-            anchoCaracter = this->GetWidth() - (this->GetWidth() - eX);
-            offsetX += anchoCaracter;
-        }
-       
-    }
-    else
-    {
+
         int charOffset = 0;
         int charWidth = this->GetSize();
         for (unsigned int i = 0; i < text.Length(); i++)
@@ -101,5 +87,4 @@ void Font::Render(const String& text, double x, double y)
             Renderer::Instance().DrawImage(this, charOffset + x, y, text[i]);
             charOffset += charWidth;
         }
-    }
 }
