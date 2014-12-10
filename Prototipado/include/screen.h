@@ -28,6 +28,7 @@ public:
     virtual int32 GetMouseY() const { return mousey; }
     virtual bool MouseButtonPressed(int button) const;
     virtual bool KeyPressed(int key) const;
+    //virtual bool KeyPressedOnce(int key) const;
 protected:
     Screen();
     virtual ~Screen();

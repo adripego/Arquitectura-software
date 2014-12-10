@@ -101,6 +101,16 @@ bool Screen::KeyPressed(int key) const {
 	return glfwGetKey(key) == GLFW_PRESS;
 }
 
+//bool Screen::KeyPressedOnce(int key) const
+//{
+//    char keyOnce[GLFW_KEY_LAST + 1];
+//    #define glfwGetKeyOnce(WINDOW, KEY)             \
+//    (glfwGetKey(WINDOW, KEY) ?              \
+//     (keyOnce[KEY] ? return false : (keyOnce[KEY] = return true)) :   \
+//     (keyOnce[KEY] = return false))
+//    return false;
+//}
+
 void Screen::Clear()
 {
     glClear(GL_COLOR_BUFFER_BIT);
