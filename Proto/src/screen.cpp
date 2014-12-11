@@ -2,7 +2,7 @@
 #include "../include/glinclude.h"
 
 Screen* Screen::screen = NULL;
-bool* keyboardState;
+int keyboardState[GLFW_KEY_LAST + 1];
 
 int GLFWCALL Screen::CloseCallback() {
 	Screen::Instance().opened = false;
