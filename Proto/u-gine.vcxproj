@@ -28,11 +28,15 @@
   <ItemGroup>
     <ClInclude Include="include\array.h" />
     <ClInclude Include="include\bone.h" />
+    <ClInclude Include="include\circlecollision.h" />
+    <ClInclude Include="include\collision.h" />
+    <ClInclude Include="include\collisionmanager.h" />
     <ClInclude Include="include\ecs.h" />
     <ClInclude Include="include\font.h" />
     <ClInclude Include="include\glinclude.h" />
     <ClInclude Include="include\image.h" />
     <ClInclude Include="include\math.h" />
+    <ClInclude Include="include\rectcollision.h" />
     <ClInclude Include="include\renderer.h" />
     <ClInclude Include="include\resourcemanager.h" />
     <ClInclude Include="include\screen.h" />
