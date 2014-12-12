@@ -1,7 +1,7 @@
-#pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")
+//#pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")
 
 #include "include/u-gine.h"
-#include "include/ecs.h"
+//#include "include/ecs.h"
 
 
 enum GameState
@@ -44,6 +44,7 @@ uint16 screenHeight;
 Font* g_font;
 int g_mmenu_opt;
 int g_igmenu_opt;
+int g_optmenu_opt;
 Game game;
 bool g_exitGame;
 
@@ -57,6 +58,10 @@ void playgame_run(void);
 void igmenu_init(void);
 void igmenu_run(void);
 void exitGame(void);
+void printIGMenu(int opt);
+void printOPTMenu(int opt);
+void optmenu_init();
+void optmenu_run();
 
 // Método encargado de finalizar el estado anterior e iniciar el nuevo estado
 void EnterState(GameState st)
@@ -68,13 +73,14 @@ void EnterState(GameState st)
         Screen::Instance().Clear();
         break;
     case GS_PLAY_GAME:
-        Screen::Instance().Clear();
+        //Screen::Instance().Clear();
         break;
     case GS_OPT_MENU:
-        Screen::Instance().Clear();
+        //Screen::Instance().Clear();
         break;
     case GS_IG_MENU:
-        Screen::Instance().Clear();
+        ResourceManager::Instance().FreeResources();
+        //Screen::Instance().Clear();
         break;
     default:
         break;
@@ -123,11 +129,11 @@ int main(int argc, char* argv[]) {
             case GS_PLAY_GAME:
                 playgame_run();
                 break;
+            case GS_OPT_MENU:
+                optmenu_run();
+                break;
             case GS_IG_MENU:
                 igmenu_run();
-                break;
-            case GS_OPT_MENU:
-                // optmenu_run();
                 break;
             default:
                 break;
@@ -148,6 +154,8 @@ void mainmenu_init(void)
 void mainmenu_run()
 {
     Screen::Instance().SetTitle(String("menu opt: ") + String::FromInt(g_mmenu_opt));
+    Renderer::Instance().SetColor(0,0,0,255);
+    Renderer::Instance().DrawRect(0,0,screenWidth, screenHeight);
     Renderer::Instance().SetColor(255, 255, 255, 0);
     switch (g_mmenu_opt)
     {
@@ -189,6 +197,7 @@ void mainmenu_run()
             EnterState(GS_PLAY_GAME);
             break;
         case 1:
+            EnterState(GS_OPT_MENU);
             break;
         case 2:
             break;
@@ -253,27 +262,40 @@ void printIGMenu(int opt)
     {
     case 0:
         Renderer::Instance().SetColor(255, 0, 0, 255);
-        g_font->Render("Restart Game", 30, screenHeight / 2);
+        g_font->Render("Resume Game", 30, screenHeight / 2);
         Renderer::Instance().SetColor(255, 255, 255, 255);
-        g_font->Render("Options", 30, screenHeight / 2 + 20);
-        g_font->Render("Exit Level", 30, screenHeight / 2 + 40);
+        g_font->Render("Restart Game", 30, screenHeight / 2 + 20);
+        g_font->Render("Options", 30, screenHeight / 2 + 40);
+        g_font->Render("Exit Level", 30, screenHeight / 2 + 60);
         break;
     case 1:
         Renderer::Instance().SetColor(255, 255, 255, 255);
-        g_font->Render("Restart Game", 30, screenHeight / 2);
+        g_font->Render("Resume Game", 30, screenHeight / 2);
         Renderer::Instance().SetColor(255, 0, 0, 255);
-        g_font->Render("Options", 30, screenHeight / 2 + 20);
+        g_font->Render("Restart Game", 30, screenHeight / 2 + 20);
         Renderer::Instance().SetColor(255, 255, 255, 255);
-        g_font->Render("Exit Level", 30, screenHeight / 2 + 40);
+        g_font->Render("Options", 30, screenHeight / 2 + 40);
+        g_font->Render("Exit Level", 30, screenHeight / 2 + 60);
         break;
     case 2:
         Renderer::Instance().SetColor(255, 255, 255, 255);
-        g_font->Render("Restart Game", 30, screenHeight / 2);
-        g_font->Render("Options", 30, screenHeight / 2 + 20);
+
+        g_font->Render("Resume Game", 30, screenHeight / 2);
+        g_font->Render("Restart Game", 30, screenHeight / 2 + 20);
         Renderer::Instance().SetColor(255, 0, 0, 255);
-        g_font->Render("Exit Level", 30, screenHeight / 2 + 40);
+        g_font->Render("Options", 30, screenHeight / 2 + 40);
         Renderer::Instance().SetColor(255, 255, 255, 255);
+        g_font->Render("Exit Level", 30, screenHeight / 2 + 60);
         break;
+    case 3:
+        Renderer::Instance().SetColor(255, 255, 255, 255);
+        g_font->Render("Resume Game", 30, screenHeight / 2);
+        g_font->Render("Restart Game", 30, screenHeight / 2 + 20);
+        g_font->Render("Options", 30, screenHeight / 2 + 40);
+        Renderer::Instance().SetColor(255, 0, 0, 255);
+        g_font->Render("Exit Level", 30, screenHeight / 2 + 60);
+        break;
+
     default:
         break;
     }
@@ -281,10 +303,10 @@ void printIGMenu(int opt)
 
 void playgame_init(void)
 {
-    Entity* Character = new Entity();
-    Character->addComponent(C_Renderable);
+    //Entity* Character = new Entity();
+    //Character->addComponent(C_Renderable);
 
-    game.text = "Score";
+    game.text = "Score: ";
     game.iPosXChar = screenWidth / 2;
     game.iPosYChar = screenHeight - 80;
     game.iCharWidth = 20;
@@ -315,7 +337,7 @@ void playgame_run(void)
 {
     Screen::Instance().Clear();
     game.timer += Screen::Instance().ElapsedTime();
-    Screen::Instance().SetTitle(String::FromFloat(game.timer));
+    Screen::Instance().SetTitle(String::FromInt(game.bouncesV) + "V H" + String::FromInt(game.bouncesH));
     Renderer::Instance().SetColor(255, 255, 255, 255);
 
     switch (game.bouncesH + game.bouncesV)
@@ -425,7 +447,10 @@ void playgame_run(void)
     }
 
     Renderer::Instance().SetColor(255, 255, 0, 255);
-    Renderer::Instance().DrawRect(game.iPosXChar, game.iPosYChar, game.iCharWidth * game.bouncesH, game.iCharHeight + game.bouncesV);
+    Renderer::Instance().DrawRect(game.iPosXChar, game.iPosYChar, game.iCharWidth * (game.bouncesH / 2) + 1, game.iCharHeight * (game.bouncesV / 2) + 1);
+    Renderer::Instance().SetColor(250, 250, 250, 255);
+    g_font->Render(game.text + String::FromInt(game.timer), 600, 10);
+
 }
 
 
@@ -436,7 +461,7 @@ void igmenu_init(void)
 
 void igmenu_run(void)
 {
-    Renderer::Instance().SetColor(255, 255, 255, 0);
+    //Renderer::Instance().SetColor(255, 255, 255, 0);
     switch (g_igmenu_opt)
     {
     case 0:
@@ -457,7 +482,7 @@ void igmenu_run(void)
 
     if (Screen::Instance().KeyOnce(GLFW_KEY_DOWN))
     {
-        if (g_igmenu_opt < 4)
+        if (g_igmenu_opt < 3)
         {
             g_igmenu_opt++;
         }
@@ -474,16 +499,115 @@ void igmenu_run(void)
         switch (g_igmenu_opt)
         {
         case 0:
-            EnterState(GS_PLAY_GAME);
             break;
         case 1:
+            EnterState(GS_PLAY_GAME);
             break;
         case 2:
+            break;
+        case 3:
             EnterState(GS_MAIN_MENU);
             break;
         default:
             break;
         }
+    }
+}
+
+
+void printOPTMenu(int opt)
+{
+    switch (opt)
+    {
+    case 0:
+        Renderer::Instance().SetColor(255, 0, 0, 255);
+        g_font->Render("Music", 30, screenHeight / 2);
+        Renderer::Instance().SetColor(255, 255, 255, 255);
+        g_font->Render("SFX", 30, screenHeight / 2 + 20);
+        g_font->Render("Game Speed", 30, screenHeight / 2 + 40);
+        g_font->Render("Exit Options", 30, screenHeight / 2 + 60);
+        break;
+    case 1:
+        Renderer::Instance().SetColor(255, 255, 255, 255);
+        g_font->Render("Music", 30, screenHeight / 2);
+        Renderer::Instance().SetColor(255, 0, 0, 255);
+        g_font->Render("SFX", 30, screenHeight / 2 + 20);
+        Renderer::Instance().SetColor(255, 255, 255, 255);
+        g_font->Render("Game Speed", 30, screenHeight / 2 + 40);
+        g_font->Render("Exit Options", 30, screenHeight / 2 + 60);
+        break;
+    case 2:
+        Renderer::Instance().SetColor(255, 255, 255, 255);
+
+        g_font->Render("Music", 30, screenHeight / 2);
+        g_font->Render("SFX", 30, screenHeight / 2 + 20);
+        Renderer::Instance().SetColor(255, 0, 0, 255);
+        g_font->Render("Game Speed", 30, screenHeight / 2 + 40);
+        Renderer::Instance().SetColor(255, 255, 255, 255);
+        g_font->Render("Exit Options", 30, screenHeight / 2 + 60);
+        break;
+    case 3:
+        Renderer::Instance().SetColor(255, 255, 255, 255);
+        g_font->Render("Music", 30, screenHeight / 2);
+        g_font->Render("SFX", 30, screenHeight / 2 + 20);
+        g_font->Render("Game Speed", 30, screenHeight / 2 + 40);
+        Renderer::Instance().SetColor(255, 0, 0, 255);
+        g_font->Render("Exit Options", 30, screenHeight / 2 + 60);
+        break;
+
+    default:
+        break;
+    }
+}
+
+void optmenu_init(void)
+{
+    g_optmenu_opt = 0;
+}
+
+void optmenu_run(void)
+{
+    Renderer::Instance().SetColor(0, 0, 0, 255);
+    Renderer::Instance().DrawRect(0, 0, screenWidth, screenHeight);
+    switch (g_optmenu_opt)
+    {
+    case 0:
+        printOPTMenu(0);
+        break;
+    case 1:
+        printOPTMenu(1);
+        break;
+    case 2:
+        printOPTMenu(2);
+        break;
+    case 3:
+        printOPTMenu(3);
+        break;
+    default:
+        break;
+    }
+
+    if (Screen::Instance().KeyOnce(GLFW_KEY_DOWN))
+    {
+        if (g_optmenu_opt < 3)
+        {
+            g_optmenu_opt++;
+        }
+    }
+    else if (Screen::Instance().KeyPressedOnce(GLFW_KEY_UP))
+    {
+        if (g_optmenu_opt > 0)
+        {
+            g_optmenu_opt--;
+        }
+    }
+    else if (Screen::Instance().KeyPressedOnce(GLFW_KEY_ENTER))
+    {
+        if (g_optmenu_opt == 3)        EnterState(GS_MAIN_MENU);
+    }
+    else if (Screen::Instance().KeyPressedOnce(GLFW_KEY_RIGHT))
+    {
+
     }
 }
 

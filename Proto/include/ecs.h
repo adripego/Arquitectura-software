@@ -2,6 +2,7 @@
 #define _ECS_H
 
 #include "array.h"
+class Entity;
 
 struct Message
 {

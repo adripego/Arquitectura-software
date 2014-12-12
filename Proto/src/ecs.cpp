@@ -6,8 +6,8 @@ void Entity::update()
         m_arrayComponentes[i].update();
 }
 
-C_Renderable::C_Renderable() : public Component
-{
-
-}
+//C_Renderable::C_Renderable() : public Component
+//{
+//
+//}
 
