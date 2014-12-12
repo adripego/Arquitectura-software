@@ -1,4 +1,4 @@
-//#pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")
+#pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")
 
 #include "include/u-gine.h"
 //#include "include/ecs.h"
@@ -303,9 +303,13 @@ void printIGMenu(int opt)
 
 void playgame_init(void)
 {
-    //Entity* Character = new Entity();
-    //Character->addComponent(C_Renderable);
-
+ //   Entity* Character = new Entity();
+	////C_Renderable* crender = new C_Renderable();
+	//C_Position* cpos = new C_Position();
+	//Character->addComponent(cpos);
+	//MoveMessage* moveMessage = new MoveMessage(10, 30);
+	//Character->receiveMessage(moveMessage);
+    
     game.text = "Score: ";
     game.iPosXChar = screenWidth / 2;
     game.iPosYChar = screenHeight - 80;
@@ -461,7 +465,9 @@ void igmenu_init(void)
 
 void igmenu_run(void)
 {
-    //Renderer::Instance().SetColor(255, 255, 255, 0);
+	Renderer::Instance().SetColor(0, 0, 0, 0);
+	//Renderer::Instance().DrawRect(0,0,screenWidth,screenHeight);
+
     switch (g_igmenu_opt)
     {
     case 0:
